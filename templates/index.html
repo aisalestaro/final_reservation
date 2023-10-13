@@ -84,6 +84,20 @@
             justify-content: space-between;
         }
     </style>
+    </head>
+    
+    <body>
+        <!-- フラッシュメッセージを表示するためのコード -->
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul class="flashes">
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+        
     <div class="section-title">
         <h1>コンテナホテル</h1>
     </div>

@@ -45,7 +45,7 @@ class Reservation(Model):
     check_in_date = DateField()
     check_out_date = DateField()
     number_of_stays = IntegerField()
-    check_in_time = CharField()
+    check_in_time = CharField(null=True) 
     remarks = TextField()
     pub_date = DateTimeField()
 

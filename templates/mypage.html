@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="ja">
 
 <head>
@@ -8,15 +7,38 @@
         .hotel-images img {
             width: 33%;
         }
+
+        /* ボタンを横並びにするスタイル */
+        .button-container {
+            display: flex;
+            gap: 10px;
+        }
     </style>
 </head>
 
 <body>
+    <!-- フラッシュメッセージを表示するためのコード -->
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul class="flashes">
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+
     <h1 class="section-title">マイページ</h1>
     <div class="section-content">
-        <button onclick="location.href='/reservation'">新規予約</button>
-        <button onclick="location.href='/reservation_history'">予約履歴</button>
-        <button onclick="location.href='/logout'">ログアウト</button>
+        <!-- ボタンを横並びにするためのコンテナ -->
+        <div class="button-container">
+            <button onclick="location.href='/reservation'">新規予約</button>
+            <button onclick="location.href='/reservation_history'">予約履歴</button>
+            <!-- ログアウト用のフォーム -->
+            <form action="/logout" method="post" style="margin: 0;">
+                <button type="submit">ログアウト</button>
+            </form>
+        </div>
     </div>
 </body>
 

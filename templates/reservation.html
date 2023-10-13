@@ -12,39 +12,44 @@
 </head>
 
 <body>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul>
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
     <h1 class="section-title">予約</h1>
     <div class="section-content">
-        <form action="/make_reservation" method="post">
+        <form action="/reservation" method="post">
             <label for="room_type">部屋タイプ：</label>
             <select id="room_type" name="room_type">
                 <option value="single">シングル</option>
                 <option value="double">ダブル</option>
                 <option value="suite">スイート</option>
             </select><br />
-            <label for="checkin">チェックイン日：</label>
-            <input id="checkin" name="checkin" type="date" /><br />
-            <label for="checkout">チェックアウト日：</label>
-            <input id="checkout" name="checkout" type="date" /><br />
-            <label for="nights">宿泊日数：</label>
-            <input id="nights" name="nights" type="number" /><br />
+            <label for="check_in_date">チェックイン日：</label>
+            <input id="check_in_date" name="check_in_date" type="date" /><br />
+            <label for="check_out_date">チェックアウト日：</label>
+            <input id="check_out_date" name="check_out_date" type="date" /><br />
             <label for="checkin_time">チェックイン時間：</label>
             <input id="checkin_time" name="checkin_time" type="time" /><br />
-            <label for="name">名前：</label>
-            <input id="name" name="name" type="text" /><br />
-            <label for="male_count">男性人数：</label>
-            <input id="male_count" name="male_count" type="number" /><br />
-            <label for="female_count">女性人数：</label>
-            <input id="female_count" name="female_count" type="number" /><br />
-            <label for="child_count">子供人数：</label>
-            <input id="child_count" name="child_count" type="number" /><br />
+            <label for="guest_name">名前：</label>
+            <input id="guest_name" name="guest_name" type="text" /><br />
+            <label for="male_guests">男性人数：</label>
+            <input id="male_guests" name="male_guests" type="number" /><br />
+            <label for="female_guests">女性人数：</label>
+            <input id="female_guests" name="female_guests" type="number" /><br />
             <label for="email">メール：</label>
             <input id="email" name="email" type="email" /><br />
-            <label for="phone">電話：</label>
-            <input id="phone" name="phone" type="tel" /><br />
+            <label for="phone_number">電話：</label>
+            <input id="phone_number" name="phone_number" type="tel" /><br />
             <label for="address">住所：</label>
             <input id="address" name="address" type="text" /><br />
-            <label for="notes">備考：</label>
-            <textarea id="notes" name="notes"></textarea><br />
+            <label for="remarks">備考：</label>
+            <textarea id="remarks" name="remarks"></textarea><br />
             <input type="submit" value="予約" />
         </form>
     </div>

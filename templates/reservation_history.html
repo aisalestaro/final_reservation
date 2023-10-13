@@ -1,18 +1,34 @@
-
 <!DOCTYPE html>
-
 <html lang="ja">
+
 <head>
-<title>予約履歴 - ホテル予約システム</title>
-<style>
-    .hotel-images img {
-        width: 33%;
-    }
-</style>
+    <title>予約履歴</title>
+    <style>
+        .hotel-images img {
+            width: 33%;
+        }
+    </style>
 </head>
+
 <body>
-<h1 class="section-title">予約履歴</h1>
-<div class="section-content">
-</div>
+    <h1 class="section-title">予約履歴</h1>
+    <div class="section-content">
+        <!-- 予約情報をループで表示 -->
+        {% for res in reservations %}
+        <div>
+            <p>部屋タイプ: {{ res.room_type }}</p>
+            <p>チェックイン日: {{ res.check_in_date }}</p>
+            <p>チェックアウト日: {{ res.check_out_date }}</p>
+            <p>宿泊日数: {{ res.number_of_stays }}</p>
+            <p>名前: {{ res.guest_name }}</p>
+            <p>男性人数: {{ res.male_guests }}</p>
+            <p>女性人数: {{ res.female_guests }}</p>
+            <p>チェックイン時間: {{ res.check_in_time }}</p>
+            <p>備考: {{ res.remarks }}</p>
+        </div>
+        <hr>
+        {% endfor %}
+    </div>
 </body>
+
 </html>
