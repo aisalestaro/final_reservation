@@ -10,9 +10,19 @@ from datetime import datetime, timedelta
 from flask import flash, redirect, url_for
 from peewee import IntegrityError
 from datetime import datetime
-
+from flask_mail import Mail, Message
 
 app = Flask(__name__)
+
+app.config['MAIL_SERVER'] = 'smtp.gmail.com' 
+app.config['MAIL_PORT'] = 465
+app.config['MAIL_USERNAME'] = 'zituyuu777@gmail.com'  
+app.config['MAIL_PASSWORD'] = 'tsft oyqa bjlo dsan'  
+app.config['MAIL_USE_TLS'] = False
+app.config['MAIL_USE_SSL'] = True
+
+mail = Mail(app)
+
 app.secret_key = os.urandom(24)
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -105,7 +115,6 @@ def reservation_history():
 
 
 def make_reservation():
-    # 現在ログインしているユーザーのIDを取得
     user_id = current_user.id
     room_type = request.form["room_type"]
     check_in_date = request.form.get("check_in_date")
@@ -116,7 +125,7 @@ def make_reservation():
     email = request.form.get("email")
     phone_number = request.form.get("phone_number")
     address = request.form.get("address")
-    check_in_time = request.form.get("check_in_time", "00:00") 
+    check_in_time = request.form.get("check_in_time", "00:00")
     remarks = request.form.get("remarks", "なし")
     
     try:
@@ -124,7 +133,7 @@ def make_reservation():
     except ValueError:
         flash("日付の形式が正しくありません")
         return redirect(url_for("reservation"))
-
+    
     try:
         # データベースに保存
         Reservation.create(
@@ -144,12 +153,32 @@ def make_reservation():
             pub_date=datetime.now()
         )
         flash("予約が完了しました!")
+        
+        # メール送信
+        msg = Message('予約完了のお知らせ', sender='your_email@gmail.com', recipients=[email])
+        msg.body = f"""
+    【予約詳細】
+        部屋タイプ: {room_type}
+        チェックイン日: {check_in_date}
+        チェックアウト日: {check_out_date}
+        滞在日数: {number_of_stays}
+        男性ゲスト数: {male_guests if male_guests else 'None'}
+        女性ゲスト数: {female_guests if female_guests else 'None'}
+        ゲスト名: {guest_name if guest_name else 'None'}
+        メールアドレス: {email if email else 'None'}
+        電話番号: {phone_number if phone_number else 'None'}
+        住所: {address if address else 'None'}
+        チェックイン時間: {check_in_time if check_in_time else 'None'}
+        備考: {remarks if remarks else 'None'}
+        """
+        mail.send(msg)
+        
         return redirect(url_for("mypage"))
-
     except IntegrityError as e:
-        print(f"Debug: Exception caught: {e}") 
+        print(f"Debug: Exception caught: {e}")
         flash(f"予約に失敗しました: {str(e)}")
         return redirect(url_for("reservation"))
+
 
 
 @app.route("/reservation", methods=["GET", "POST"])
