@@ -4,14 +4,73 @@
 
 <head>
     <title>予約 - ホテル予約システム</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <style>
         .hotel-images img {
             width: 33%;
+        }
+
+        .center-align {
+            text-align: center;
+        }
+
+        .center-align label,
+        .center-align input,
+        .center-align select,
+        .center-align textarea {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
         }
     </style>
 </head>
 
 <body>
+    <!-- Availability Section Begin -->
+    <div class="container">
+        <nav class="navbar navbar-light">
+            <span class="navbar-brand mb-0 h1">
+                <a
+                    href="{{ url_for('reservation', year=prev_month.split('-')[0], month=prev_month.split('-')[1]) }}">＜前月</a>
+                {{ current_month_label }}
+                <a
+                    href="{{ url_for('reservation', year=next_month.split('-')[0], month=next_month.split('-')[1]) }}">翌月＞</a>
+            </span>
+        </nav>
+
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    {% for day_label in days_label %}
+                    <th>{{ day_label }}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for week in month %}
+                <tr>
+                    {% for day_info in week %}
+                    <td>
+                        {% if day_info %}
+                        {{ day_info.date.day }}
+                        <br>
+                        {% if day_info.available %}
+                        ◯
+                        {% else %}
+                        ×
+                        {% endif %}
+                        {% endif %}
+                    </td>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <!-- Availability Section End -->
+
     {% with messages = get_flashed_messages() %}
     {% if messages %}
     <ul>
@@ -21,8 +80,8 @@
     </ul>
     {% endif %}
     {% endwith %}
-    <h1 class="section-title">予約</h1>
-    <div class="section-content">
+    <h1 class="section-title center-align">予約</h1>
+    <div class="section-content center-align">
         <form action="/reservation" method="post">
             <label for="room_type">部屋タイプ：</label>
             <select id="room_type" name="room_type">
@@ -52,6 +111,13 @@
             <input type="submit" value="予約" />
         </form>
     </div>
+
+    <!-- Optional JavaScript; choose one of the two! -->
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-p34f1UUtsS3vAk39lBq6K/iMInIb3l5I79lM03bWAqVSA6lA1W2Yft+8rmWxP1lF"
+        crossorigin="anonymous"></script>
+
 </body>
 
 </html>

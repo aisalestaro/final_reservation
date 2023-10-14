@@ -57,6 +57,6 @@ class Inventory(Model):
     available_rooms = IntegerField(default=10) 
 
 
-
+db.create_tables([Inventory])
 db.create_tables([User])
 db.create_tables([Reservation])

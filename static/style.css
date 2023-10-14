@@ -90,3 +90,68 @@ h2 {
 a.btn.btn-primary {
     color: white !important;
 }
+
+
+/* このCSSは既存のCSSファイルに追加 */
+.image-row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.image-column {
+    flex: 1;
+    padding: 15px;
+    text-align: center;
+}
+
+
+.image-container,
+.image-container2,
+.image-container3 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.image-container div,
+.image-container2 div,
+.image-container3 div {
+    flex: 1 1 calc(33.333% - 20px);
+    margin: 10px;
+    box-sizing: border-box;
+}
+
+<style>.calendar-table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.calendar-table th,
+.calendar-table td {
+    border: 1px solid #ccc;
+    text-align: center;
+    padding: 10px;
+}
+
+.calendar-table th {
+    background-color: #f3f3f3;
+}
+
+.available {
+    background-color: #c6ffc1;
+}
+
+.unavailable {
+    background-color: #ffabab;
+}
+
+<style>.table td {
+    vertical-align: middle;
+    text-align: center;
+}
+
+.badge {
+    font-size: 1em;
+}
+
+</style>

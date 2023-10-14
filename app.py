@@ -9,10 +9,15 @@ from config import User, Reservation
 from datetime import datetime, timedelta
 from flask import flash, redirect, url_for
 from peewee import IntegrityError
-from datetime import datetime
 from flask_mail import Mail, Message
+from config import Inventory 
+from datetime import datetime, date, timedelta
+from calendar import monthrange
+import calendar
 
-app = Flask(__name__)
+
+
+app = Flask(__name__, static_folder="./templates/images")
 
 app.config['MAIL_SERVER'] = 'smtp.gmail.com' 
 app.config['MAIL_PORT'] = 465
@@ -99,12 +104,6 @@ def mypage():
     return render_template("mypage.html")
 
 
-@app.route("/check_availability", methods=["GET", "POST"])
-@login_required
-def check_availability():
-    return render_template("check_availability.html")
-
-
 @app.route("/reservation_history", methods=["GET", "POST"])
 @login_required
 def reservation_history():
@@ -181,13 +180,65 @@ def make_reservation():
 
 
 
+
+def get_month_data(year, month):
+    first_day_of_month = datetime(year, month, 1)
+    last_day_of_month = datetime(year, month + 1, 1) - timedelta(days=1)
+    day = first_day_of_month
+    month_data = []
+    week_data = []
+    day_offset = day.weekday()  # 0: Monday, 1: Tuesday, ..., 6: Sunday
+    week_data.extend([None] * day_offset)  # Padding days before the first day of the month
+
+    while day <= last_day_of_month:
+        week_data.append({
+            'date': day,
+            'available': day.weekday() not in [5, 6]  # Assume unavailable on weekends for example
+        })
+        if day.weekday() == 6:  # Sunday
+            month_data.append(week_data)
+            week_data = []
+        day += timedelta(days=1)
+
+    if week_data:  # If the last week is not complete
+        week_data.extend([None] * (7 - len(week_data)))  # Padding days after the last day of the month
+        month_data.append(week_data)
+
+    return month_data
+
+
+
 @app.route("/reservation", methods=["GET", "POST"])
 @login_required
 def reservation():
     if request.method == "POST":
         return make_reservation()
-    return render_template("reservation.html")
 
+    # ここで年と月のパラメータを受け取る
+    year = request.args.get('year', type=int, default=datetime.now().year)
+    month = request.args.get('month', type=int, default=datetime.now().month)
+    # 月のデータを取得
+    month_data = get_month_data(year, month)
+    # 前月と次月のデータを計算
+    prev_month = (month - 1) % 12 or 12
+    prev_year = year - 1 if month == 1 else year
+    next_month = (month + 1) % 12 or 12
+    next_year = year + 1 if month == 12 else year
+
+    # 日本語の月名と曜日名
+    month_name_jp = f'{month}月({year}年)'
+    days_label_jp = ['月', '火', '水', '木', '金', '土', '日']
+
+    return render_template(
+        'reservation.html',
+        month=month_data,
+        current_month_label=month_name_jp,
+        prev_month_label=f'＜前月　{prev_month}月({prev_year}年)　翌月＞',
+        next_month_label=f'＜前月　{next_month}月({next_year}年)　翌月＞',
+        prev_month=f'{prev_year}-{prev_month:02d}',
+        next_month=f'{next_year}-{next_month:02d}',
+        days_label=days_label_jp
+    )
 
 
 
