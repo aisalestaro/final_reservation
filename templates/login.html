@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
 {% block content %}
-        <h2>LogIn</h2>
+        <h2>ログイン</h2>
         {% if error %}<p class=error><strong>Error:</strong> {{ error }}</p>{% endif %}
         <form action="{{ url_for('login') }}" method="post">
-            <div>Email:</div>
+            <div>メールアドレス</div>
             <input type="email" name="メールアドレス">
-            <div>Password:</div>
+            <div>パスワード</div>
             <input type="password" name="パスワード">
             <input type="submit" value="ログイン">
         </form>

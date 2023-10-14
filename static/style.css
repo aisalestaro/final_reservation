@@ -86,3 +86,7 @@ h2 {
 .message {
     display: flex;
 }
+
+a.btn.btn-primary {
+    color: white !important;
+}

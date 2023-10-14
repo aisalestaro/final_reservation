@@ -2,11 +2,11 @@
 {% block content %}
         <h2>Register</h2>
         <form action="{{ url_for('register') }}" method="post">
-            <div>Username:</div>
+            <div>ユーザー名</div>
             <div><input type="text" name="名前"></div>
-            <div>Password:</div>
+            <div>パスワード</div>
             <div><input type="password" name="パスワード"></div>
-            <div>Email:</div>
+            <div>メールアドレス</div>
             <div><input type="email" name="メールアドレス"></div>
             <input type="submit" value="新規登録">
         </form>
