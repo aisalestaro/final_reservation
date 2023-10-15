@@ -154,4 +154,92 @@ a.btn.btn-primary {
     font-size: 1em;
 }
 
-</style>
+< !DOCTYPE html><html lang="ja"><head><title>ABOUT US</title><style>
+
+/* Basic styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f2f2f2;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Section title styling */
+.section-title {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+}
+
+/* Section content styling */
+.section-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #fff;
+    padding: 20px;
+    margin: 20px 0;
+    box-shadow: 2px 2px 12px #aaa;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.section-content>* {
+    width: 100%;
+    max-width: 800px;
+    /* or any other max-width you desire */
+    text-align: left;
+}
+
+/* Table styling */
+table {
+    width: 80%;
+    /* Adjusted width */
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+th,
+td {
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+    padding: 8px;
+}
+
+th {
+    background-color: #f0f0f0;
+}
+
+.profile {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+}
+
+.profile img {
+    width: 200px;
+    margin-right: 10px;
+}
+
+.profile div {
+    max-width: calc(100% - 200px - 10px);
+}
+
+.profile-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.profile-card {
+    flex: 0 0 calc(33.3333% - 20px);
+    /* 画面の1/3 - 20pxのマージン */
+    margin: 10px;
+    box-sizing: border-box;
+}

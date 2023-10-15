@@ -8,7 +8,7 @@
 <html lang="ja">
 
 <head>
-    <title>コンテナホテル</title>
+    <title>ホテル ロングステイ</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -99,6 +99,33 @@
             width: 30%;
         }
     </style>
+    <style>
+        /* テーブルスタイル */
+        table {
+            width: 100%;
+            /* テーブルの幅を指定 */
+            border-collapse: collapse;
+            /* 枠線を重ねて表示 */
+            margin-bottom: 20px;
+            /* テーブルの下の余白を指定 */
+        }
+
+        th,
+        td {
+            border-bottom: 1px solid #ddd;
+            /* セルの境界線を指定 */
+            text-align: left;
+            /* テキストを左寄せにする */
+            padding: 8px;
+            /* セルの内側の余白を指定 */
+        }
+
+        th {
+            background-color: #f0f0f0;
+            /* ヘッダーの背景色を指定 */
+        }
+    </style>
+
 </head>
 
 <body>
@@ -113,17 +140,7 @@
     {% endwith %}
 
     <div class="section-title">
-        <h1>コンテナホテル</h1>
-    </div>
-    <div class="section-content">
-        <p>場所: 八幡平市大更</p>
-        <p>全15室</p>
-        <p>東北自動車道 松尾八幡平 (盛岡から40分)</p>
-        <p>焼き走り溶岩流や松川温泉、冬はスキーなど、レジャー・ショッピングにも最適。</p>
-        <p>ホテル付近には癒しの天然温泉がございますので、一日の疲れをリフレッシュできます。</p>
-    </div>
-    <div class="section-title">
-        <h2>ホテルイメージ</h2>
+        <h2>ホテル ロングステイ</h2>
     </div>
     <div class="section-content">
         <div class="image-container">
@@ -180,44 +197,81 @@
             <p>新しく綺麗なお風呂とお手洗いを完備しています</p>
         </div>
     </div>
-    <div class="section-content">
-        <div>
-            <h3>ダブルルーム</h3>
-            <p>全室禁煙</p>
-            <p>Wi-Fi完備</p>
-            <p>全15室</p>
-            <p>2名</p>
-            <p>13㎡</p>
-            <p>W140cm×L195cm ×1台</p>
-            <p>料金 1名 6,200円／泊〜 2名 8,700円／泊〜</p>
-            <p>付帯設備 ユニットバス、冷凍冷蔵庫、電子レンジ、加湿空気清浄機</p>
-            <p>W140×L195サイズのシモンズ製ダブルベッドに加え、デスクとチェアを全室装備。</p>
-        </div>
-    </div>
-    <!-- ホテル基本情報セクション -->
-    <div class="section-title">
-        <h2>ホテル基本情報</h2>
-    </div>
-    <div class="section-content">
-        <p>住所: 八幡平市大更</p>
-        <p>電話番号: 012-3456-7890</p>
-        <p>チェックイン・アウト時間: チェックイン 15:00／チェックアウト 10:00</p>
-        <p>支払い方法（現地）: 現金, クレジットカード（VISA／JCB／Diners Club／American Express／MasterCard）</p>
-        <p>支払い方法（オンライン事前決済）: クレジットカード（VISA／JCB／Diners Club／American Express／MasterCard）</p>
-    </div>
-    <!-- 館内設備・サービスセクション -->
-    <div class="section-title">
-        <h2>館内設備・サービス</h2>
-    </div>
-    <div class="section-content">
-        <p>【駐車場】普通車 15台（無料）</p>
-        <p>【客室】 ユニットバス, トイレ, テレビ, ドライヤー, 冷凍冷蔵庫, 電子レンジ, 電子ポット, 加湿空気清浄機</p>
-        <p>【共有】 コインランドリー, 自動販売機, 無料コーヒーコーナー, 無料軽食コーナー（客室の電子レンジで温めてお召し上がりいただけます。）, 館内では、無料Wi-Fiをご利用いただけます。</p>
-        <p>【アメニティ】 【無料】 シャンプー, コンディショナー, ボディソープ, ハンドソープ, ナイトウェア（ガウン）, ボディタオル, 歯ブラシ, ヘアブラシ, T字カミソリ ※詳細はフロントスタッフへお尋ねください。
-        </p>
-    </div>
-    <!-- 交通案内セクション -->
-    <!-- Googleマップの埋め込みコードをここに追加する -->
+<div class="section-title">
+    <h2>ダブルルーム</h2>
+</div>
+<div class="section-content">
+    <table>
+        <tr>
+            <td>設備</td>
+            <td>全室禁煙、Wi-Fi完備、ユニットバス、冷凍冷蔵庫、電子レンジ、加湿空気清浄機、ダブルマット布団（airweave）、デスク、チェア</td>
+        </tr>
+        <tr>
+            <td>部屋数</td>
+            <td>全15室（1~2名利用）</td>
+        </tr>
+        <tr>
+            <td>広さ</td>
+            <td>W140cm×L195cm（13㎡）</td>
+        </tr>
+        <tr>
+            <td>料金</td>
+            <td>1名 6,200円／泊〜 2名 8,700円／泊〜　※長期滞在プラン 3,300~/泊</td>
+        </tr>
+    </table>
+</div>
+<div class="section-title">
+    <h2>ホテル基本情報</h2>
+</div>
+<div class="section-content">
+    <table>
+        <tr>
+            <td>住所</td>
+            <td>八幡平市大更</td>
+        </tr>
+        <tr>
+            <td>電話番号</td>
+            <td>012-3456-7890</td>
+        </tr>
+        <tr>
+            <td>チェックイン・アウト時間</td>
+            <td>チェックイン 15:00／チェックアウト 10:00</td>
+        </tr>
+        <tr>
+            <td>支払い方法（現地）</td>
+            <td>現金, クレジットカード（VISA／JCB／Diners Club／American Express／MasterCard）</td>
+        </tr>
+        <tr>
+            <td>支払い方法（オンライン事前決済）</td>
+            <td>クレジットカード（VISA／JCB／Diners Club／American Express／MasterCard）</td>
+        </tr>
+    </table>
+</div>
+
+<div class="section-title">
+    <h2>館内設備・サービス</h2>
+</div>
+<div class="section-content">
+    <table>
+        <tr>
+            <td>駐車場</td>
+            <td>普通車 15台（無料）</td>
+        </tr>
+        <tr>
+            <td>客室</td>
+            <td>ユニットバス、トイレ、テレビ、ドライヤー、冷凍冷蔵庫、電子レンジ、電子ポット、加湿空気清浄機</td>
+        </tr>
+        <tr>
+            <td>共有</td>
+            <td>コインランドリー、自動販売機、無料コーヒーコーナー、無料軽食コーナー（客室の電子レンジで温めてお召し上がりいただけます。）</td>
+        </tr>
+        <tr>
+            <td>アメニティ</td>
+            <td>シャンプー、コンディショナー、ボディソープ、ハンドソープ、ナイトウェア（ガウン）、ボディタオル、歯ブラシ、ヘアブラシ、T字カミソリ、その他</td>
+        </tr>
+    </table>
+</div>
+
     <div class="section-title">
         <h1>交通案内</h1>
     </div>

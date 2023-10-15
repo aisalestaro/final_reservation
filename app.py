@@ -207,6 +207,16 @@ def get_month_data(year, month):
     return month_data
 
 
+def send_cancelation_notification(email, room_type, check_in_date, check_out_date):
+    msg = Message('予約キャンセルのお知らせ', sender='your_email@gmail.com', recipients=[email])
+    msg.body = f"""
+    【キャンセル詳細】
+        部屋タイプ: {room_type}
+        チェックイン日: {check_in_date}
+        チェックアウト日: {check_out_date}
+        """    
+    mail.send(msg)
+
 
 @app.route("/reservation", methods=["GET", "POST"])
 @login_required
@@ -214,20 +224,26 @@ def reservation():
     if request.method == "POST":
         return make_reservation()
 
-    # ここで年と月のパラメータを受け取る
     year = request.args.get('year', type=int, default=datetime.now().year)
     month = request.args.get('month', type=int, default=datetime.now().month)
-    # 月のデータを取得
     month_data = get_month_data(year, month)
-    # 前月と次月のデータを計算
     prev_month = (month - 1) % 12 or 12
     prev_year = year - 1 if month == 1 else year
     next_month = (month + 1) % 12 or 12
     next_year = year + 1 if month == 12 else year
 
-    # 日本語の月名と曜日名
     month_name_jp = f'{month}月({year}年)'
     days_label_jp = ['月', '火', '水', '木', '金', '土', '日']
+
+    availability_message = ''
+    check_in_date = request.args.get('check_in_date')
+    check_out_date = request.args.get('check_out_date')
+    if check_in_date and check_out_date:
+        # ここで在庫を確認するロジックを実装します。
+        # この例では単純化のために常に在庫があると仮定しています。
+        available = True  
+        if not available:
+            availability_message = '予約不可の日程です。'
 
     return render_template(
         'reservation.html',
@@ -237,8 +253,34 @@ def reservation():
         next_month_label=f'＜前月　{next_month}月({next_year}年)　翌月＞',
         prev_month=f'{prev_year}-{prev_month:02d}',
         next_month=f'{next_year}-{next_month:02d}',
-        days_label=days_label_jp
+        days_label=days_label_jp,
+        availability_message=availability_message
     )
+
+
+
+@app.route("/cancel_reservation/<int:reservation_id>", methods=["POST"])
+@login_required
+def cancel_reservation(reservation_id):
+    try:
+        reservation = Reservation.get(id=reservation_id, user=current_user.id)
+        send_cancelation_notification(
+            reservation.email,
+            reservation.room_type,
+            reservation.check_in_date,
+            reservation.check_out_date
+        )
+        reservation.delete_instance()
+        flash("予約がキャンセルされました")
+    except Reservation.DoesNotExist:
+        flash("予約が見つかりません")
+    return redirect(url_for("reservation_history"))
+
+
+
+@app.route("/company", methods=["GET", "POST"])
+def company():
+    return render_template("company.html")
 
 
 

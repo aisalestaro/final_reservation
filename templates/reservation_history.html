@@ -13,6 +13,22 @@
 <body>
     <h1 class="section-title">予約履歴</h1>
     <div class="section-content">
+        <!-- フラッシュメッセージを表示 -->
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul class="flashes">
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+
+        <!-- マイページへのリンクを追加 -->
+        <div>
+            <a href="/mypage">マイページへ</a>
+        </div>
+
         <!-- 予約情報をループで表示 -->
         {% for res in reservations %}
         <div>
@@ -25,6 +41,11 @@
             <p>女性人数: {{ res.female_guests }}</p>
             <p>チェックイン時間: {{ res.check_in_time }}</p>
             <p>備考: {{ res.remarks }}</p>
+
+            <!-- キャンセルボタンを追加 -->
+            <form action="/cancel_reservation/{{ res.id }}" method="post">
+                <input type="submit" value="キャンセル">
+            </form>
         </div>
         <hr>
         {% endfor %}
