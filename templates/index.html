@@ -126,9 +126,101 @@
         }
     </style>
 
+
+    <script>
+        // メニューを表示・非表示にする関数
+        function toggleMenu() {
+            var menuLinks = document.querySelector('.menu-links');
+            if (menuLinks.classList.contains('hidden')) {
+                menuLinks.classList.remove('hidden');
+                menuLinks.classList.add('visible');
+            } else {
+                menuLinks.classList.remove('visible');
+                menuLinks.classList.add('hidden');
+            }
+        }
+    </script>
+    <style>
+        /* メニューバーのスタイル */
+        .menu-container {
+            position: fixed;
+            top: 0;
+            right: 0;
+            z-index: 1000;
+            background-color: #333;
+            /* Dark gray color */
+            padding: 10px;
+        }
+
+        .menu-button {
+            width: 50px;
+            height: 50px;
+            background-color: #333;
+            /* Dark gray color */
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        .bar {
+            width: 70%;
+            height: 5px;
+            background-color: white;
+            margin: 5px auto;
+        }
+
+        .menu-links {
+            display: none;
+        }
+
+        .menu-links a {
+            display: block;
+            margin: 10px;
+            text-decoration: none;
+            color: white;
+            /* Making the text color white */
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .visible {
+            display: block;
+        }
+    </style>
+    <style>
+        /* For larger screens */
+        @media screen and (min-width: 1024px) {
+            .hotel-images img {
+                max-width: 98%;
+                height: auto;
+            }
+        }
+
+        /* For smaller screens */
+        @media screen and (max-width: 1023px) {
+            .hotel-images img {
+                max-width: 100%;
+                height: auto;
+            }
+        }
+    </style>
 </head>
 
 <body>
+    <!-- メニューバーのコード -->
+    <div class="menu-container">
+        <div class="menu-button" onclick="toggleMenu()">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+        <div class="menu-links hidden">
+            <a href="/company">ABOUT US</a> <!-- Moved to the top -->
+            <a href="/">BUSINESS</a> <!-- Moved to the bottom -->
+        </div>
+    </div>
+
     {% with messages = get_flashed_messages() %}
     {% if messages %}
     <ul class="flashes">
@@ -177,147 +269,147 @@
                 <p>喫煙所の用意もございます。</p>
             </div>
         </div>
-    <div class="section-title">
-        <h2>客室</h2>
-    </div>
-    <div class="image-container">
-        <div>
-            <h3>外観</h3>
-            <img src="images/exterior.jpg" alt="exterior">
-            <p>おしゃれなデザインの外観です</p>
+        <div class="section-title">
+            <h2>客室</h2>
         </div>
-        <div>
-            <h3>ベッド</h3>
-            <img src="images/bed.jpg" alt="bed">
-            <p>モダンなデザインのおしゃれな客室です</p>
+        <div class="image-container">
+            <div>
+                <h3>外観</h3>
+                <img src="images/exterior.jpg" alt="exterior">
+                <p>おしゃれなデザインの外観です</p>
+            </div>
+            <div>
+                <h3>ベッド</h3>
+                <img src="images/bed.jpg" alt="bed">
+                <p>モダンなデザインのおしゃれな客室です</p>
+            </div>
+            <div>
+                <h3>水回り</h3>
+                <img src="images/bath.jpg" alt="bath">
+                <p>新しく綺麗なお風呂とお手洗いを完備しています</p>
+            </div>
         </div>
-        <div>
-            <h3>水回り</h3>
-            <img src="images/bath.jpg" alt="bath">
-            <p>新しく綺麗なお風呂とお手洗いを完備しています</p>
+        <div class="section-title">
+            <h2>ダブルルーム</h2>
         </div>
-    </div>
-<div class="section-title">
-    <h2>ダブルルーム</h2>
-</div>
-<div class="section-content">
-    <table>
-        <tr>
-            <td>設備</td>
-            <td>全室禁煙、Wi-Fi完備、ユニットバス、冷凍冷蔵庫、電子レンジ、加湿空気清浄機、ダブルマット布団（airweave）、デスク、チェア</td>
-        </tr>
-        <tr>
-            <td>部屋数</td>
-            <td>全15室（1~2名利用）</td>
-        </tr>
-        <tr>
-            <td>広さ</td>
-            <td>W140cm×L195cm（13㎡）</td>
-        </tr>
-        <tr>
-            <td>料金</td>
-            <td>1名 6,200円／泊〜 2名 8,700円／泊〜　※長期滞在プラン 3,300~/泊</td>
-        </tr>
-    </table>
-</div>
-<div class="section-title">
-    <h2>ホテル基本情報</h2>
-</div>
-<div class="section-content">
-    <table>
-        <tr>
-            <td>住所</td>
-            <td>八幡平市大更</td>
-        </tr>
-        <tr>
-            <td>電話番号</td>
-            <td>012-3456-7890</td>
-        </tr>
-        <tr>
-            <td>チェックイン・アウト時間</td>
-            <td>チェックイン 15:00／チェックアウト 10:00</td>
-        </tr>
-        <tr>
-            <td>支払い方法（現地）</td>
-            <td>現金, クレジットカード（VISA／JCB／Diners Club／American Express／MasterCard）</td>
-        </tr>
-        <tr>
-            <td>支払い方法（オンライン事前決済）</td>
-            <td>クレジットカード（VISA／JCB／Diners Club／American Express／MasterCard）</td>
-        </tr>
-    </table>
-</div>
+        <div class="section-content">
+            <table>
+                <tr>
+                    <td>設備</td>
+                    <td>全室禁煙、Wi-Fi完備、ユニットバス、冷凍冷蔵庫、電子レンジ、加湿空気清浄機、ダブルマット布団（airweave）、デスク、チェア</td>
+                </tr>
+                <tr>
+                    <td>部屋数</td>
+                    <td>全15室（1~2名利用）</td>
+                </tr>
+                <tr>
+                    <td>広さ</td>
+                    <td>W140cm×L195cm（13㎡）</td>
+                </tr>
+                <tr>
+                    <td>料金</td>
+                    <td>1名 6,200円／泊〜 2名 8,700円／泊〜　※長期滞在プラン 3,300~/泊</td>
+                </tr>
+            </table>
+        </div>
+        <div class="section-title">
+            <h2>ホテル基本情報</h2>
+        </div>
+        <div class="section-content">
+            <table>
+                <tr>
+                    <td>住所</td>
+                    <td>八幡平市大更</td>
+                </tr>
+                <tr>
+                    <td>電話番号</td>
+                    <td>012-3456-7890</td>
+                </tr>
+                <tr>
+                    <td>チェックイン・アウト時間</td>
+                    <td>チェックイン 15:00／チェックアウト 10:00</td>
+                </tr>
+                <tr>
+                    <td>支払い方法（現地）</td>
+                    <td>現金, クレジットカード（VISA／JCB／Diners Club／American Express／MasterCard）</td>
+                </tr>
+                <tr>
+                    <td>支払い方法（オンライン事前決済）</td>
+                    <td>クレジットカード（VISA／JCB／Diners Club／American Express／MasterCard）</td>
+                </tr>
+            </table>
+        </div>
 
-<div class="section-title">
-    <h2>館内設備・サービス</h2>
-</div>
-<div class="section-content">
-    <table>
-        <tr>
-            <td>駐車場</td>
-            <td>普通車 15台（無料）</td>
-        </tr>
-        <tr>
-            <td>客室</td>
-            <td>ユニットバス、トイレ、テレビ、ドライヤー、冷凍冷蔵庫、電子レンジ、電子ポット、加湿空気清浄機</td>
-        </tr>
-        <tr>
-            <td>共有</td>
-            <td>コインランドリー、自動販売機、無料コーヒーコーナー、無料軽食コーナー（客室の電子レンジで温めてお召し上がりいただけます。）</td>
-        </tr>
-        <tr>
-            <td>アメニティ</td>
-            <td>シャンプー、コンディショナー、ボディソープ、ハンドソープ、ナイトウェア（ガウン）、ボディタオル、歯ブラシ、ヘアブラシ、T字カミソリ、その他</td>
-        </tr>
-    </table>
-</div>
+        <div class="section-title">
+            <h2>館内設備・サービス</h2>
+        </div>
+        <div class="section-content">
+            <table>
+                <tr>
+                    <td>駐車場</td>
+                    <td>普通車 15台（無料）</td>
+                </tr>
+                <tr>
+                    <td>客室</td>
+                    <td>ユニットバス、トイレ、テレビ、ドライヤー、冷凍冷蔵庫、電子レンジ、電子ポット、加湿空気清浄機</td>
+                </tr>
+                <tr>
+                    <td>共有</td>
+                    <td>コインランドリー、自動販売機、無料コーヒーコーナー、無料軽食コーナー（客室の電子レンジで温めてお召し上がりいただけます。）</td>
+                </tr>
+                <tr>
+                    <td>アメニティ</td>
+                    <td>シャンプー、コンディショナー、ボディソープ、ハンドソープ、ナイトウェア（ガウン）、ボディタオル、歯ブラシ、ヘアブラシ、T字カミソリ、その他</td>
+                </tr>
+            </table>
+        </div>
 
-    <div class="section-title">
-        <h1>交通案内</h1>
-    </div>
-    <div class="section-content">
-        <!-- Googleマップの埋め込み -->
-        <iframe height="450"
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3024.388711284935!2d140.8258594154342!3d39.96850197942371!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5f9d4b68c0f0e8a3%3A0x11ef3a6c6a8e3f5f!2z5rW35rK86aeF!5e0!3m2!1sja!2sjp!4v1634012923246!5m2!1sja!2sjp"
-            width="600"></iframe>
-    </div>
-    <style>
-        /* 固定ボタンのスタイル */
-        .fixed-reserve-button {
-            position: fixed;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: red;
-            color: white;
-            padding: 12px 24px;
-            border: none;
-            border-radius: 4px;
-            font-size: 16px;
-            cursor: pointer;
-            z-index: 1000;
-        }
-    </style>
-    <<!-- 固定予約ボタン -->
-        <a href="/check_availability" style="color: white;"><button class="fixed-reserve-button"><a
-                    href="{{ url_for('reservation') }}" class="btn btn-primary"
-                    style="color: white;">このホテルを予約する</a></button></a>
-
-
+        <div class="section-title">
+            <h1>交通案内</h1>
+        </div>
+        <div class="section-content">
+            <!-- Googleマップの埋め込み -->
+            <iframe height="450"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3024.388711284935!2d140.8258594154342!3d39.96850197942371!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5f9d4b68c0f0e8a3%3A0x11ef3a6c6a8e3f5f!2z5rW35rK86aeF!5e0!3m2!1sja!2sjp!4v1634012923246!5m2!1sja!2sjp"
+                width="600"></iframe>
+        </div>
         <style>
-            .image-container,
-            .image-container2,
-            .image-container3 {
-                display: flex;
-                justify-content: space-between;
-            }
-
-            .image-container div,
-            .image-container2 div,
-            .image-container3 div {
-                width: 30%;
+            /* 固定ボタンのスタイル */
+            .fixed-reserve-button {
+                position: fixed;
+                bottom: 0;
+                left: 50%;
+                transform: translateX(-50%);
+                background-color: red;
+                color: white;
+                padding: 12px 24px;
+                border: none;
+                border-radius: 4px;
+                font-size: 16px;
+                cursor: pointer;
+                z-index: 1000;
             }
         </style>
-        </head>
+        <<!-- 固定予約ボタン -->
+            <a href="/check_availability" style="color: white;"><button class="fixed-reserve-button"><a
+                        href="{{ url_for('reservation') }}" class="btn btn-primary"
+                        style="color: white;">このホテルを予約する</a></button></a>
+
+
+            <style>
+                .image-container,
+                .image-container2,
+                .image-container3 {
+                    display: flex;
+                    justify-content: space-between;
+                }
+
+                .image-container div,
+                .image-container2 div,
+                .image-container3 div {
+                    width: 30%;
+                }
+            </style>
+            </head>
 
 </html>

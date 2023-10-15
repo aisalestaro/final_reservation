@@ -239,8 +239,7 @@ def reservation():
     check_in_date = request.args.get('check_in_date')
     check_out_date = request.args.get('check_out_date')
     if check_in_date and check_out_date:
-        # ここで在庫を確認するロジックを実装します。
-        # この例では単純化のために常に在庫があると仮定しています。
+
         available = True  
         if not available:
             availability_message = '予約不可の日程です。'
